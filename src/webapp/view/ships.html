@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Shipyard</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<h1>Elite Dangerous Shipyard</h1>
+<div>
+    <div class = "sidebar-filter">
+        <div>
+            <form name="filter" action method="get">
+                <div class="filter-item-block">
+                    <span>Cost</span>
+                </div>
+                <div class="filter-item-block">
+                    <div class="form-item">
+                        <input type="text" name="price.min" style="width: 70px">
+                        <span>-</span>
+                        <input type="text" name="price.min" style="width: 70px">
+                        <span>cr</span>
+                    </div>
+                </div>
+                <div class="filter-item-block">
+                    <span>Manufacturer</span>
+                </div>
+                <div class="filter-item-block">
+                    <div class="form-item">
+                        <input type="checkbox" name="Core Dynamics" id="coredynamics">
+                        <label for="coredynamics">Core Dynamics</label>
+                    </div>
+                    <div class="form-item">
+                        <input type="checkbox" name="Faulcon DeLacy" id="faulcondelacy">
+                        <label for="faulcondelacy">Faulcon DeLacy</label><br>
+                    </div>
+                    <div class="form-item">
+                        <input type="checkbox" name="Gutamaya" id="gutamaya">
+                        <label for="gutamaya">Gutamaya</label><br>
+                    </div>
+                    <div class="form-item">
+                        <input type="checkbox" name="Lakon" id="lakon">
+                        <label for="lakon">Lakon</label><br>
+                    </div>
+                    <div class="form-item">
+                        <input type="checkbox" name="Saud Kruger" id="saudkruger">
+                        <label for="saudkruger">Saud Kruger</label><br>
+                    </div>
+                    <div class="form-item">
+                        <input type="checkbox" name="Zorgon Peterson" id="zorgon peterson">
+                        <label for="zorgon peterson">Zorgon Peterson</label>
+                    </div>
+                </div>
+                <div class="filter-item-block">
+                    <span>Size</span>
+                </div>
+                <div class="filter-item-block">
+                    <div class="form-item">
+                        <input type="checkbox" name="Large" id="large">
+                        <label for="large">Large</label>
+                    </div>
+                    <div class="form-item">
+                        <input type="checkbox" name="Medium" id="medium">
+                        <label for="medium">Medium</label><br>
+                    </div>
+                    <div class="form-item">
+                        <input type="checkbox" name="Small" id="small">
+                        <label for="small">Small</label><br>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ship-list">
+        <div>
+            <script src="../js/script.js"></script>
+
+        </div>
+    </div>
+</div>
+</body>
