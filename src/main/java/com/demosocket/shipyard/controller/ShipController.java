@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/ships")
 public class ShipController {
 
     private ShipDao shipDao;
@@ -19,7 +20,7 @@ public class ShipController {
         this.shipDao = shipDao;
     }
 
-    @RequestMapping(value = "/ships", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Ship> findAll() {
         return shipDao.findAll();
     }

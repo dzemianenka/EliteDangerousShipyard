@@ -1,31 +1,26 @@
 package com.demosocket.shipyard.config;
 
-import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
-public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{HibernateConfig.class};
-    }
-
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[0];
-    }
+public class ApplicationInitializer implements WebApplicationInitializer {
 
     @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
-    }
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        var applicationContext = new AnnotationConfigWebApplicationContext();
+        applicationContext.register(AppConfig.class);
 
-    @Override
-    protected Filter[] getServletFilters() {
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-        return new Filter[]{characterEncodingFilter};
+        servletContext.addListener(new ContextLoaderListener(applicationContext));
+
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
+                "dispatcher", new DispatcherServlet(applicationContext));
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/ships/*");
     }
 }
