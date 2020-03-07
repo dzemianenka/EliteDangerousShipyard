@@ -1,10 +1,22 @@
 h1 {
     text-align: center;
+    position: relative;
 }
 .sidebar-filter {
+    position: absolute;
     height: 100%;
     width: 200px;
-    background-color: aqua;
+    left: 0;
+}
+.ship-list {
+    position: absolute;
+    width: 500px;
+    right: 0;
+}
+.ship-table {
+    align-items: center;
+    border: 1px solid black;
+
 }
 .filter-item-block {
     text-align: center;
