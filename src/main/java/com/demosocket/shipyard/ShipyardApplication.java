@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 public class ShipyardApplication {
 
-
-
     public static void main(String[] args) {
         SpringApplication.run(ShipyardApplication.class, args);
     }

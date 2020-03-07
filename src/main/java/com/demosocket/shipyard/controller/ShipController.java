@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ships")
+@RequestMapping(value = "/ships")
 public class ShipController {
 
     private ShipDao shipDao;
