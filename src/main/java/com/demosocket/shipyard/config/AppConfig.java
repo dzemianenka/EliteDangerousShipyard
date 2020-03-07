@@ -18,8 +18,7 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/templates/**").addResourceLocations("/templates/");
-        registry.addResourceHandler("/css/**").addResourceLocations("/templates/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/templates/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
     }
 
     @Override
@@ -29,7 +28,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     public ClassLoaderTemplateResolver templateResolver() {
-        var templateResolver = new ClassLoaderTemplateResolver();
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
@@ -41,7 +40,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     public SpringTemplateEngine templateEngine() {
-        var templateEngine = new SpringTemplateEngine();
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
 
         return templateEngine;
@@ -49,7 +48,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Bean
     public ThymeleafViewResolver viewResolver() {
-        var viewResolver = new ThymeleafViewResolver();
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
         viewResolver.setCache(false);

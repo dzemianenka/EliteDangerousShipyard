@@ -28,7 +28,7 @@ public class HibernateConfig {
     @Bean
     @ConfigurationProperties(prefix="application.properties")
     public DataSource dataSource() {
-        var dataSource = new DriverManagerDataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("spring.datasource.driver-class-name")));
         dataSource.setUrl(environment.getProperty("spring.datasource.url"));
         dataSource.setUsername(environment.getProperty("spring.datasource.username"));
@@ -38,7 +38,7 @@ public class HibernateConfig {
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
-        var sessionFactory = new LocalSessionFactoryBean();
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("com.demosocket.shipyard");
         sessionFactory.setHibernateProperties(hibernateProperties());
@@ -47,7 +47,7 @@ public class HibernateConfig {
 
     @Bean
     public HibernateTransactionManager transactionManager() {
-        var transactionManager = new HibernateTransactionManager();
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
