@@ -1,8 +1,7 @@
-var ourRequest = new XMLHttpRequest();
+let ourRequest = new XMLHttpRequest();
 ourRequest.open('GET', 'http://localhost:8080/ships/all');
 ourRequest.onload = function () {
-    var ourShips = JSON.parse(ourRequest.responseText);
-    ourShips.forEach(element => console.log(element));
+    let ourShips = JSON.parse(ourRequest.responseText);
     var resultDiv = '<div>';
     ourShips.forEach(ship => resultDiv += '<div class="ship-div">' +
         '<p> Model: ' + ship.shipModel + '</p>' +
