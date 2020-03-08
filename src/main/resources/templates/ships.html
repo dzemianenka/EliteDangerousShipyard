@@ -15,9 +15,11 @@
             </div>
             <div class="filter-item-block">
                 <div class="form-item">
-                    <input type="text" name="price.min" style="width: 70px">
+                    <input type="text" name="price.min" id="price.min" style="width: 70px">
+                    <label for="price.min"> </label>
                     <span>-</span>
-                    <input type="text" name="price.min" style="width: 70px">
+                    <input type="text" name="price.min" id="price.max" style="width: 70px">
+                    <label for="price.max"> </label>
                     <span>cr</span>
                 </div>
             </div>
@@ -26,28 +28,28 @@
             </div>
             <div class="filter-item-block">
                 <div class="form-item">
-                    <input type="checkbox" name="Core Dynamics" id="coredynamics">
-                    <label for="coredynamics">Core Dynamics</label>
+                    <input type="checkbox" name="Core Dynamics" id="coreDynamics" onchange="coreDynamicsShips()">
+                    <label for="coreDynamics">Core Dynamics</label>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Faulcon DeLacy" id="faulcondelacy">
-                    <label for="faulcondelacy">Faulcon DeLacy</label><br>
+                    <input type="checkbox" name="Faulcon DeLacy" id="faulconDelacy" onchange="faulconDelacyShips()">
+                    <label for="faulconDelacy">Faulcon DeLacy</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Gutamaya" id="gutamaya">
+                    <input type="checkbox" name="Gutamaya" id="gutamaya" onchange="gutamayaShips()">
                     <label for="gutamaya">Gutamaya</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Lakon" id="lakon">
+                    <input type="checkbox" name="Lakon" id="lakon" onchange="lakonShips()">
                     <label for="lakon">Lakon</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Saud Kruger" id="saudkruger">
-                    <label for="saudkruger">Saud Kruger</label><br>
+                    <input type="checkbox" name="Saud Kruger" id="saudKruger" onchange="saudKrugerShips()">
+                    <label for="saudKruger">Saud Kruger</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Zorgon Peterson" id="zorgon peterson">
-                    <label for="zorgon peterson">Zorgon Peterson</label>
+                    <input type="checkbox" name="Zorgon Peterson" id="zorgonPeterson" onchange="zorgonPetersonShips()">
+                    <label for="zorgonPeterson">Zorgon Peterson</label>
                 </div>
             </div>
             <div class="filter-item-block">
@@ -78,4 +80,5 @@
 </div>
 <script async src="js/script.js" th:src="@{js/script.js}"></script>
 <script async src="js/size.js" th:src="@{js/size.js}"></script>
+<script async src="js/manufacturer.js" th:src="@{js/manufacturer.js}"></script>
 </body>
