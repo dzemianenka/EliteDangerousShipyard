@@ -3,7 +3,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Shipyard</title>
-    <link rel="stylesheet" href="css/style.css" th:href="@{css/style.css}"/>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}"/>
 </head>
 <body>
 <h1>Elite Dangerous Shipyard</h1>
@@ -15,11 +15,11 @@
             </div>
             <div class="filter-item-block">
                 <div class="form-item">
-                    <input type="text" name="price.min" id="price.min" style="width: 70px">
-                    <label for="price.min"> </label>
+                    <input type="text" name="price-min" id="price-min" style="width: 70px" placeholder="31000" pattern="[0-9]{0,9}">
+                    <label for="price-min"> </label>
                     <span>-</span>
-                    <input type="text" name="price.min" id="price.max" style="width: 70px">
-                    <label for="price.max"> </label>
+                    <input type="text" name="price-min" id="price-max" style="width: 70px" placeholder="208968450" pattern="[0-9]{0,9}">
+                    <label for="price-max"> </label>
                     <span>cr</span>
                 </div>
             </div>
@@ -78,7 +78,7 @@
         </div>
     </div>
 </div>
-<script async src="js/script.js" th:src="@{js/script.js}"></script>
-<script async src="js/size.js" th:src="@{js/size.js}"></script>
-<script async src="js/manufacturer.js" th:src="@{js/manufacturer.js}"></script>
+<script async src="../static/js/script.js" th:src="@{js/script.js}"></script>
+<script async src="../static/js/size.js" th:src="@{js/size.js}"></script>
+<script async src="../static/js/manufacturer.js" th:src="@{js/manufacturer.js}"></script>
 </body>
