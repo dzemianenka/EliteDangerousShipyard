@@ -1,6 +1,5 @@
 package com.demosocket.shipyard.service;
 
-import com.demosocket.shipyard.model.Ship;
 import com.demosocket.shipyard.dao.ShipDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,52 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
-    public List<Ship> getAll() {
+    public List<?> getAll() {
         return shipDao.findAll();
+    }
+
+    @Override
+    public List<?> findLarge(){
+        return shipDao.findLarge();
+    }
+
+    @Override
+    public List<?> findMedium() {
+        return shipDao.findMedium();
+    }
+
+    @Override
+    public List<?> findSmall() {
+        return shipDao.findSmall();
+    }
+
+    @Override
+    public List<?> findCoreDynamics() {
+        return shipDao.findCoreDynamics();
+    }
+
+    @Override
+    public List<?> findFaulconDeLacy() {
+        return shipDao.findFaulconDeLacy();
+    }
+
+    @Override
+    public List<?> findGutamaya() {
+        return shipDao.findGutamaya();
+    }
+
+    @Override
+    public List<?> findLakon() {
+        return shipDao.findLakon();
+    }
+
+    @Override
+    public List<?> findSaudKruger() {
+        return shipDao.findSaudKruger();
+    }
+
+    @Override
+    public List<?> findZorgonPeterson() {
+        return shipDao.findZorgonPeterson();
     }
 }
