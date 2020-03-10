@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.2.5.RELEASE'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.12.Final'
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'

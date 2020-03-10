@@ -15,10 +15,10 @@
             </div>
             <div class="filter-item-block">
                 <div class="form-item">
-                    <input type="text" name="price-min" id="price-min" style="width: 70px" placeholder="31000" pattern="[0-9]{0,9}">
+                    <input type="text" name="price-min" id="price-min" style="width: 70px" value="31000" onchange="checkIt()">
                     <label for="price-min"> </label>
                     <span>-</span>
-                    <input type="text" name="price-min" id="price-max" style="width: 70px" placeholder="208968450" pattern="[0-9]{0,9}">
+                    <input type="text" name="price-min" id="price-max" style="width: 70px" value="208968450" onchange="checkIt()">
                     <label for="price-max"> </label>
                     <span>cr</span>
                 </div>
@@ -28,27 +28,27 @@
             </div>
             <div class="filter-item-block">
                 <div class="form-item">
-                    <input type="checkbox" name="Core Dynamics" id="coreDynamics" onchange="coreDynamicsShips()">
+                    <input type="checkbox" name="Core Dynamics" id="coreDynamics" onchange="checkIt()">
                     <label for="coreDynamics">Core Dynamics</label>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Faulcon DeLacy" id="faulconDeLacy" onchange="faulconDeLacyShips()">
+                    <input type="checkbox" name="Faulcon DeLacy" id="faulconDeLacy" onchange="checkIt()">
                     <label for="faulconDeLacy">Faulcon DeLacy</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Gutamaya" id="gutamaya" onchange="gutamayaShips()">
+                    <input type="checkbox" name="Gutamaya" id="gutamaya" onchange="checkIt()">
                     <label for="gutamaya">Gutamaya</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Lakon" id="lakon" onchange="lakonShips()">
+                    <input type="checkbox" name="Lakon" id="lakon" onchange="checkIt()">
                     <label for="lakon">Lakon</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Saud Kruger" id="saudKruger" onchange="saudKrugerShips()">
+                    <input type="checkbox" name="Saud Kruger" id="saudKruger" onchange="checkIt()">
                     <label for="saudKruger">Saud Kruger</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Zorgon Peterson" id="zorgonPeterson" onchange="zorgonPetersonShips()">
+                    <input type="checkbox" name="Zorgon Peterson" id="zorgonPeterson" onchange="checkIt()">
                     <label for="zorgonPeterson">Zorgon Peterson</label>
                 </div>
             </div>
@@ -57,15 +57,15 @@
             </div>
             <div class="filter-item-block">
                 <div class="form-item">
-                    <input type="checkbox" name="Large" id="large" value="large" onchange="largeShips()">
+                    <input type="checkbox" name="Large" id="large" value="large" onchange="checkIt()">
                     <label for="large">Large</label>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Medium" id="medium" value="medium" onchange="mediumShips()">
+                    <input type="checkbox" name="Medium" id="medium" value="medium" onchange="checkIt()">
                     <label for="medium">Medium</label><br>
                 </div>
                 <div class="form-item">
-                    <input type="checkbox" name="Small" id="small" value="small" onchange="smallShips()">
+                    <input type="checkbox" name="Small" id="small" value="small" onchange="checkIt()">
                     <label for="small">Small</label><br>
                 </div>
 
@@ -79,6 +79,4 @@
     </div>
 </div>
 <script async src="../static/js/script.js" th:src="@{js/script.js}"></script>
-<script async src="../static/js/size.js" th:src="@{js/size.js}"></script>
-<script async src="../static/js/manufacturer.js" th:src="@{js/manufacturer.js}"></script>
 </body>

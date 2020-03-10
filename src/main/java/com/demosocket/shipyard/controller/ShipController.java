@@ -24,48 +24,9 @@ public class ShipController {
         return shipDao.findAll();
     }
 
-    @RequestMapping(value = "/large", method = RequestMethod.GET)
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
     public List<?> findLarge() {
-        return shipDao.findLarge();
+        return shipDao.findShips();
     }
 
-    @RequestMapping(value = "/medium", method = RequestMethod.GET)
-    public List<?> findMedium() {
-        return shipDao.findMedium();
-    }
-
-    @RequestMapping(value = "/small", method = RequestMethod.GET)
-    public List<?> findSmall() {
-        return shipDao.findSmall();
-    }
-
-    @RequestMapping(value = "/coredymanics", method = RequestMethod.GET)
-    public List<?> findCoreDynamics() {
-        return shipDao.findCoreDynamics();
-    }
-
-    @RequestMapping(value = "/faulcondelacy", method = RequestMethod.GET)
-    public List<?> findFaulconDeLacy() {
-        return shipDao.findFaulconDeLacy();
-    }
-
-    @RequestMapping(value = "/gutamaya", method = RequestMethod.GET)
-    public List<?> findGutamaya() {
-        return shipDao.findGutamaya();
-    }
-
-    @RequestMapping(value = "/lakon", method = RequestMethod.GET)
-    public List<?> findLakon() {
-        return shipDao.findLakon();
-    }
-
-    @RequestMapping(value = "/saudkruger", method = RequestMethod.GET)
-    public List<?> findSaudKruger() {
-        return shipDao.findSaudKruger();
-    }
-
-    @RequestMapping(value = "/zorgonpeterson", method = RequestMethod.GET)
-    public List<?> findZorgonPeterson() {
-        return shipDao.findZorgonPeterson();
-    }
 }
