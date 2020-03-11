@@ -22,8 +22,8 @@ public class ShipServiceImpl implements ShipService {
         return shipDao.findAll();
     }
 
-//    @Override
-//    public List<?> findShips() {
-//        return shipDao.findShips();
-//    }
+    @Override
+    public List<?> findShips() {
+        return shipDao.findShips();
+    }
 }

@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ShipDao {
     List<?> findAll();
-//    List<?> findShips();
+    List<?> findShips();
 
 }
