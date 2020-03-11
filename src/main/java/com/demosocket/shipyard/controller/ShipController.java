@@ -24,9 +24,9 @@ public class ShipController {
         return shipDao.findAll();
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public List<?> findLarge() {
-        return shipDao.findShips();
-    }
+//    @RequestMapping(value = "/search", method = RequestMethod.GET)
+//    public List<?> findLarge() {
+//        return shipDao.findShips();
+//    }
 
 }
