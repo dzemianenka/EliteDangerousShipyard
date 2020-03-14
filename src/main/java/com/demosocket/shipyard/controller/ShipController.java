@@ -21,21 +21,6 @@ public class ShipController {
         this.shipDao = shipDao;
     }
 
-//    @RequestMapping(value = "/all", method = RequestMethod.GET)
-//    public List<?> findAll(@RequestParam(value = "min") Integer min,
-//                           @RequestParam(value = "max") Integer max,
-//                           @RequestParam(value = "coreDynamics") Boolean coreDynamics,
-//                           @RequestParam(value = "faulconDeLacy") Boolean faulconDeLacy,
-//                           @RequestParam(value = "gutamaya") Boolean gutamaya,
-//                           @RequestParam(value = "lakon") Boolean lakon,
-//                           @RequestParam(value = "saudKruger") Boolean saudKruger,
-//                           @RequestParam(value = "zorgonPeterson") Boolean zorgonPeterson,
-//                           @RequestParam(value = "large") Boolean large,
-//                           @RequestParam(value = "medium") Boolean medium,
-//                           @RequestParam(value = "small") Boolean small) {
-//        return shipDao.findAll();
-//    }
-
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public List<Ship> findShips(@RequestParam(value = "min") Integer min,
                                 @RequestParam(value = "max") Integer max,

@@ -45,7 +45,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public HibernateTransactionManager hibernateTransactionManager () {
+    public HibernateTransactionManager hibernateTransactionManager() {
         final HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;

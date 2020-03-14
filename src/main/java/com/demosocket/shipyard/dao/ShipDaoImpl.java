@@ -25,16 +25,10 @@ public class ShipDaoImpl implements ShipDao {
         this.sessionFactory = sessionFactory;
     }
 
-//    @Override
-//    public List<?> findAll() {
-//        return sessionFactory.getCurrentSession()
-//                .createQuery("FROM " + Ship.class.getName()).list();
-//    }
-
     @Override
     public List<Ship> findShips(Integer min, Integer max, Boolean coreDynamics, Boolean faulconDeLacy,
-                             Boolean gutamaya, Boolean lakon, Boolean saudKruger, Boolean zorgonPeterson,
-                             Boolean large, Boolean medium, Boolean small) {
+                                Boolean gutamaya, Boolean lakon, Boolean saudKruger, Boolean zorgonPeterson,
+                                Boolean large, Boolean medium, Boolean small) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Ship> criteriaQuery = criteriaBuilder.createQuery(Ship.class);
