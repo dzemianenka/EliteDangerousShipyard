@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-@Transactional
 public class ShipDaoImpl implements ShipDao {
 
     private SessionFactory sessionFactory;
@@ -33,15 +31,17 @@ public class ShipDaoImpl implements ShipDao {
 //                .createQuery("FROM " + Ship.class.getName()).list();
 //    }
 
-    @Transactional
     @Override
-    public List<?> findShips(Integer min, Integer max, Boolean coreDynamics, Boolean faulconDeLacy,
+    public List<Ship> findShips(Integer min, Integer max, Boolean coreDynamics, Boolean faulconDeLacy,
                              Boolean gutamaya, Boolean lakon, Boolean saudKruger, Boolean zorgonPeterson,
                              Boolean large, Boolean medium, Boolean small) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Ship> criteriaQuery = criteriaBuilder.createQuery(Ship.class);
         Root<Ship> shipRoot = criteriaQuery.from(Ship.class);
+
+//        Cost Predicate
+        Predicate predicateC = criteriaBuilder.between(shipRoot.get("cost"), min, max);
 
         Map<String, Boolean> manufacturerMap = new HashMap<>();
         manufacturerMap.put("%Core Dynamics%", coreDynamics);
@@ -52,11 +52,19 @@ public class ShipDaoImpl implements ShipDao {
         manufacturerMap.put("%Zorgon Peterson%", zorgonPeterson);
 
         List<Predicate> manufacturerPredicates = new ArrayList<>();
-        for (Map.Entry<String, Boolean> entry : manufacturerMap.entrySet()) {
-            if (entry.getValue()) {
+        if (manufacturerMap.containsValue(true)) {
+            for (Map.Entry<String, Boolean> entry : manufacturerMap.entrySet()) {
+                if (entry.getValue()) {
+                    manufacturerPredicates.add(criteriaBuilder.like(shipRoot.get("manufacturer"), entry.getKey()));
+                }
+            }
+        } else {
+            for (Map.Entry<String, Boolean> entry : manufacturerMap.entrySet()) {
                 manufacturerPredicates.add(criteriaBuilder.like(shipRoot.get("manufacturer"), entry.getKey()));
             }
         }
+
+//        Manufacturer Predicate
         Predicate predicateM = criteriaBuilder.or(manufacturerPredicates.toArray(new Predicate[0]));
 
         Map<String, Boolean> costMap = new HashMap<>();
@@ -65,17 +73,25 @@ public class ShipDaoImpl implements ShipDao {
         costMap.put("%Small%", small);
 
         List<Predicate> sizePredicates = new ArrayList<>();
-        for (Map.Entry<String, Boolean> entry : costMap.entrySet()) {
-            if (entry.getValue()) {
+        if (costMap.containsValue(true)) {
+            for (Map.Entry<String, Boolean> entry : costMap.entrySet()) {
+                if (entry.getValue()) {
+                    sizePredicates.add(criteriaBuilder.like(shipRoot.get("size"), entry.getKey()));
+                }
+            }
+        } else {
+            for (Map.Entry<String, Boolean> entry : costMap.entrySet()) {
                 sizePredicates.add(criteriaBuilder.like(shipRoot.get("size"), entry.getKey()));
             }
         }
+
+//        Size Predicate
         Predicate predicateS = criteriaBuilder.or(sizePredicates.toArray(new Predicate[0]));
 
-        Predicate predicateC = criteriaBuilder.between(shipRoot.get("cost"), min, max);
-        Predicate predicate = criteriaBuilder.and(predicateC, predicateS, predicateM);
+//        Result Predicate
+        Predicate resultPredicate = criteriaBuilder.and(predicateC, predicateS, predicateM);
 
-        criteriaQuery.select(shipRoot).where(predicate);
+        criteriaQuery.select(shipRoot).where(resultPredicate);
 
         return session.createQuery(criteriaQuery).getResultList();
     }

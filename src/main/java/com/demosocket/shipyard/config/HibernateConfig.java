@@ -3,8 +3,6 @@ package com.demosocket.shipyard.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -14,9 +12,6 @@ import java.util.Objects;
 import java.util.Properties;
 
 @Configuration
-//@EnableTransactionManagement
-//@EnableJpaRepositories(basePackages = "com.demosocket.shipyard", transactionManagerRef = "jpaTransactionManager")
-//@EnableJpaAuditing
 @ComponentScan("com.demosocket.shipyard")
 @PropertySource("classpath:application.properties")
 public class HibernateConfig {

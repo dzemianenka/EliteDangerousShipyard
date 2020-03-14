@@ -1,4 +1,3 @@
-// var searchParams = 'http://localhost:8080/ships/search?min=31000&max=208968450&coreDynamics=true&faulconDeLacy=true&gutamaya=true&lakon=true&saudKruger=true&zorgonPeterson=true&large=true&medium=true&small=true';
 let searchParams;
 
 async function checkIt() {
@@ -15,13 +14,14 @@ async function checkIt() {
     let small = document.getElementById("small").checked;
 
     searchParams = `http://localhost:8080/ships/search?min=${min}&max=${max}&coreDynamics=${coreDynamics}&faulconDeLacy=${faulconDeLacy}&gutamaya=${gutamaya}&lakon=${lakon}&saudKruger=${saudKruger}&zorgonPeterson=${zorgonPeterson}&large=${large}&medium=${medium}&small=${small}`;
+    // console.log(searchParams);
 
     const ajax_req = new XMLHttpRequest();
     ajax_req.open('GET', searchParams,true);
 
     ajax_req.onload = function () {
         if (this.status === 200) {
-            var ourShips = JSON.parse(this.responseText);
+            const ourShips = JSON.parse(this.responseText);
             let resultDiv = '<div>';
             ourShips.forEach(ship => resultDiv += '<div class="ship-div">' +
                 '<p> Model: ' + ship.shipModel + '</p>' +
@@ -35,7 +35,4 @@ async function checkIt() {
     };
 
     ajax_req.send();
-
-    console.log(searchParams);
 }
-
