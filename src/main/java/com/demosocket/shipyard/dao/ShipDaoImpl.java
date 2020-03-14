@@ -89,7 +89,7 @@ public class ShipDaoImpl implements ShipDao {
         Predicate predicateS = criteriaBuilder.or(sizePredicates.toArray(new Predicate[0]));
 
 //        Result Predicate
-        Predicate resultPredicate = criteriaBuilder.and(predicateC, predicateS, predicateM);
+        Predicate resultPredicate = criteriaBuilder.and(predicateC, predicateM, predicateS);
 
         criteriaQuery.select(shipRoot).where(resultPredicate);
 
