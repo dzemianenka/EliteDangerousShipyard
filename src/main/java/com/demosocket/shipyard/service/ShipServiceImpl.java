@@ -17,13 +17,16 @@ public class ShipServiceImpl implements ShipService {
         this.shipDao = shipDao;
     }
 
-    @Override
-    public List<?> getAll() {
-        return shipDao.findAll();
-    }
+//    @Override
+//    public List<?> getAll() {
+//        return shipDao.findAll();
+//    }
 
     @Override
-    public List<?> findShips() {
-        return shipDao.findShips();
+    public List<?> findShips(Integer min, Integer max, Boolean coreDynamics, Boolean faulconDeLacy,
+                             Boolean gutamaya, Boolean lakon, Boolean saudKruger, Boolean zorgonPeterson,
+                             Boolean large, Boolean medium, Boolean small) {
+        return shipDao.findShips(min, max, coreDynamics, faulconDeLacy, gutamaya,
+                lakon, saudKruger, zorgonPeterson, large, medium, small);
     }
 }

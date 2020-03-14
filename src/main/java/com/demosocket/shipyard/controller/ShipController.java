@@ -4,6 +4,7 @@ import com.demosocket.shipyard.dao.ShipDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,14 +20,36 @@ public class ShipController {
         this.shipDao = shipDao;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<?> findAll() {
-        return shipDao.findAll();
-    }
+//    @RequestMapping(value = "/all", method = RequestMethod.GET)
+//    public List<?> findAll(@RequestParam(value = "min") Integer min,
+//                           @RequestParam(value = "max") Integer max,
+//                           @RequestParam(value = "coreDynamics") Boolean coreDynamics,
+//                           @RequestParam(value = "faulconDeLacy") Boolean faulconDeLacy,
+//                           @RequestParam(value = "gutamaya") Boolean gutamaya,
+//                           @RequestParam(value = "lakon") Boolean lakon,
+//                           @RequestParam(value = "saudKruger") Boolean saudKruger,
+//                           @RequestParam(value = "zorgonPeterson") Boolean zorgonPeterson,
+//                           @RequestParam(value = "large") Boolean large,
+//                           @RequestParam(value = "medium") Boolean medium,
+//                           @RequestParam(value = "small") Boolean small) {
+//        return shipDao.findAll();
+//    }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public List<?> findShips() {
-        return shipDao.findShips();
+    public List<?> findShips(@RequestParam(value = "min") Integer min,
+                             @RequestParam(value = "max") Integer max,
+                             @RequestParam(value = "coreDynamics") Boolean coreDynamics,
+                             @RequestParam(value = "faulconDeLacy") Boolean faulconDeLacy,
+                             @RequestParam(value = "gutamaya") Boolean gutamaya,
+                             @RequestParam(value = "lakon") Boolean lakon,
+                             @RequestParam(value = "saudKruger") Boolean saudKruger,
+                             @RequestParam(value = "zorgonPeterson") Boolean zorgonPeterson,
+                             @RequestParam(value = "large") Boolean large,
+                             @RequestParam(value = "medium") Boolean medium,
+                             @RequestParam(value = "small") Boolean small) {
+
+        return shipDao.findShips(min, max, coreDynamics, faulconDeLacy, gutamaya,
+                lakon, saudKruger, zorgonPeterson, large, medium, small);
     }
 
 }
