@@ -2,10 +2,10 @@ package com.demosocket.shipyard.dao;
 
 import com.demosocket.shipyard.model.Ship;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -18,19 +18,18 @@ import java.util.Map;
 @Repository
 public class ShipDaoImpl implements ShipDao {
 
-    private SessionFactory sessionFactory;
+    private EntityManager entityManager;
 
     @Autowired
-    public ShipDaoImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public ShipDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
     public List<Ship> findShips(Integer min, Integer max, Boolean coreDynamics, Boolean faulconDeLacy,
                                 Boolean gutamaya, Boolean lakon, Boolean saudKruger, Boolean zorgonPeterson,
                                 Boolean large, Boolean medium, Boolean small) {
-        Session session = sessionFactory.openSession();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Ship> criteriaQuery = criteriaBuilder.createQuery(Ship.class);
         Root<Ship> shipRoot = criteriaQuery.from(Ship.class);
 
@@ -87,6 +86,6 @@ public class ShipDaoImpl implements ShipDao {
 
         criteriaQuery.select(shipRoot).where(resultPredicate);
 
-        return session.createQuery(criteriaQuery).getResultList();
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 }
