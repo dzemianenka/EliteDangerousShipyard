@@ -17,7 +17,7 @@ async function checkIt() {
     // console.log(searchParams);
 
     const ajax_req = new XMLHttpRequest();
-    ajax_req.open('GET', searchParams, true);
+    ajax_req.open('POST', searchParams, true);
 
     ajax_req.onload = function () {
         if (this.status === 200) {

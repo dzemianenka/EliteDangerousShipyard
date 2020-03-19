@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ShipServiceImpl implements ShipService {
@@ -18,10 +19,7 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
-    public List<Ship> findShips(Integer min, Integer max, Boolean coreDynamics, Boolean faulconDeLacy,
-                                Boolean gutamaya, Boolean lakon, Boolean saudKruger, Boolean zorgonPeterson,
-                                Boolean large, Boolean medium, Boolean small) {
-        return shipDao.findShips(min, max, coreDynamics, faulconDeLacy, gutamaya,
-                lakon, saudKruger, zorgonPeterson, large, medium, small);
+    public List<Ship> findShips(Map<String, String> allParams) {
+        return shipDao.findShips(allParams);
     }
 }
