@@ -1,7 +1,7 @@
 package com.demosocket.shipyard.controller;
 
-import com.demosocket.shipyard.dao.ShipDao;
 import com.demosocket.shipyard.model.Ship;
+import com.demosocket.shipyard.service.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +12,18 @@ import java.util.Map;
 @RequestMapping("/ships")
 public class ShipController {
 
-    private ShipDao shipDao;
+    private ShipService shipService;
 
     @Autowired
-    public ShipController(ShipDao shipDao) {
-        this.shipDao = shipDao;
+    public ShipController(ShipService shipService) {
+        this.shipService = shipService;
     }
 
     @PostMapping("/search")
     @ResponseBody
     public List<Ship> findShips(@RequestParam Map<String, String> allParams) {
-        return shipDao.findShips(allParams);
+
+        return shipService.findShips(allParams);
     }
 
 }

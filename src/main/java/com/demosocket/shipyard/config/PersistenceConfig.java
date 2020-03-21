@@ -40,12 +40,14 @@ public class PersistenceConfig {
     public JpaTransactionManager jpaTransactionManager() {
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+
         return transactionManager;
     }
 
     private HibernateJpaVendorAdapter vendorAdaptor() {
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setShowSql(true);
+
         return vendorAdapter;
     }
 
@@ -67,6 +69,7 @@ public class PersistenceConfig {
                 environment.getRequiredProperty("spring.jpa.properties.hibernate.dialect"));
         properties.put("spring.jpa.show-sql",
                 environment.getRequiredProperty("spring.jpa.show-sql"));
+
         return properties;
     }
 }

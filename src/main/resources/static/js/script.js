@@ -1,4 +1,5 @@
 let searchParams;
+// let searchBody;
 
 async function checkIt() {
     let min = document.getElementById("price-min").value;
@@ -12,6 +13,20 @@ async function checkIt() {
     let large = document.getElementById("large").checked;
     let medium = document.getElementById("medium").checked;
     let small = document.getElementById("small").checked;
+
+    // var jsonData = {
+    //     "price-min": min,
+    //     "price-max": max,
+    //     "coreDynamics": coreDynamics,
+    //     "faulconDeLacy": faulconDeLacy,
+    //     "gutamaya": gutamaya,
+    //     "lakon": lakon,
+    //     "saudKruger": saudKruger,
+    //     "zorgonPeterson": zorgonPeterson,
+    //     "large": large,
+    //     "medium": medium,
+    //     "small": small
+    // };
 
     searchParams = `http://localhost:8080/ships/search?min=${min}&max=${max}&coreDynamics=${coreDynamics}&faulconDeLacy=${faulconDeLacy}&gutamaya=${gutamaya}&lakon=${lakon}&saudKruger=${saudKruger}&zorgonPeterson=${zorgonPeterson}&large=${large}&medium=${medium}&small=${small}`;
     // console.log(searchParams);
@@ -35,4 +50,5 @@ async function checkIt() {
     };
 
     ajax_req.send();
+
 }
