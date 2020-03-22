@@ -15,18 +15,17 @@ async function checkIt() {
 
     $.ajax({
         type: 'POST',
-        contentType : "application/json",
+        contentType : 'application/json',
         url: 'http://localhost:8080/ships/search',
         data: JSON.stringify(jsonData),
-        dataType : "json",
+        dataType : 'json',
         success: function(data) {
-            const ourShips = data;
             let resultDiv = '<div>';
-            ourShips.forEach(ship => resultDiv += '<div class="ship-div">' +
-                '<p> Model: ' + ship.shipModel + '</p>' +
-                '<p> Manufacturer: ' + ship.manufacturer + '</p>' +
-                '<p> Cost: ' + ship.cost + ' cr</p>' +
-                '<p> Landing Pad: ' + ship.size + '</p>' +
+            data.forEach(ship => resultDiv += '<div class="ship-div">' +
+                '<p> Model: ' + ship["shipModel"] + '</p>' +
+                '<p> Manufacturer: ' + ship["manufacturer"] + '</p>' +
+                '<p> Cost: ' + ship["cost"] + ' cr</p>' +
+                '<p> Landing Pad: ' + ship["size"] + '</p>' +
                 '</div>');
             resultDiv += '</div>';
             document.getElementById("placeholder").innerHTML = resultDiv;
