@@ -1,12 +1,12 @@
 package com.demosocket.shipyard.service;
 
 import com.demosocket.shipyard.dao.ShipDao;
+import com.demosocket.shipyard.model.AjaxBody;
 import com.demosocket.shipyard.model.Ship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ShipServiceImpl implements ShipService {
@@ -19,7 +19,8 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
-    public List<Ship> findShips(Map<String, String> allParams) {
-        return shipDao.findShips(allParams);
+    public List<Ship> findShips(AjaxBody body) {
+
+        return shipDao.findShips(body);
     }
 }

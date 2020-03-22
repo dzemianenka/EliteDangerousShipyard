@@ -1,42 +1,26 @@
-let searchParams;
-// let searchBody;
-
 async function checkIt() {
-    let min = document.getElementById("price-min").value;
-    let max = document.getElementById("price-max").value;
-    let coreDynamics = document.getElementById("coreDynamics").checked;
-    let faulconDeLacy = document.getElementById("faulconDeLacy").checked;
-    let gutamaya = document.getElementById("gutamaya").checked;
-    let lakon = document.getElementById("lakon").checked;
-    let saudKruger = document.getElementById("saudKruger").checked;
-    let zorgonPeterson = document.getElementById("zorgonPeterson").checked;
-    let large = document.getElementById("large").checked;
-    let medium = document.getElementById("medium").checked;
-    let small = document.getElementById("small").checked;
+    const jsonData = {
+        priceMin: document.getElementById("priceMin").value,
+        priceMax: document.getElementById("priceMax").value,
+        coreDynamics: document.getElementById("coreDynamics").checked,
+        faulconDeLacy: document.getElementById("faulconDeLacy").checked,
+        gutamaya: document.getElementById("gutamaya").checked,
+        lakon: document.getElementById("lakon").checked,
+        saudKruger: document.getElementById("saudKruger").checked,
+        zorgonPeterson: document.getElementById("zorgonPeterson").checked,
+        large: document.getElementById("large").checked,
+        medium: document.getElementById("medium").checked,
+        small: document.getElementById("small").checked
+    };
 
-    // var jsonData = {
-    //     "price-min": min,
-    //     "price-max": max,
-    //     "coreDynamics": coreDynamics,
-    //     "faulconDeLacy": faulconDeLacy,
-    //     "gutamaya": gutamaya,
-    //     "lakon": lakon,
-    //     "saudKruger": saudKruger,
-    //     "zorgonPeterson": zorgonPeterson,
-    //     "large": large,
-    //     "medium": medium,
-    //     "small": small
-    // };
-
-    searchParams = `http://localhost:8080/ships/search?min=${min}&max=${max}&coreDynamics=${coreDynamics}&faulconDeLacy=${faulconDeLacy}&gutamaya=${gutamaya}&lakon=${lakon}&saudKruger=${saudKruger}&zorgonPeterson=${zorgonPeterson}&large=${large}&medium=${medium}&small=${small}`;
-    // console.log(searchParams);
-
-    const ajax_req = new XMLHttpRequest();
-    ajax_req.open('POST', searchParams, true);
-
-    ajax_req.onload = function () {
-        if (this.status === 200) {
-            const ourShips = JSON.parse(this.responseText);
+    $.ajax({
+        type: 'POST',
+        contentType : "application/json",
+        url: 'http://localhost:8080/ships/search',
+        data: JSON.stringify(jsonData),
+        dataType : "json",
+        success: function(data) {
+            const ourShips = data;
             let resultDiv = '<div>';
             ourShips.forEach(ship => resultDiv += '<div class="ship-div">' +
                 '<p> Model: ' + ship.shipModel + '</p>' +
@@ -47,8 +31,5 @@ async function checkIt() {
             resultDiv += '</div>';
             document.getElementById("placeholder").innerHTML = resultDiv;
         }
-    };
-
-    ajax_req.send();
-
+    });
 }

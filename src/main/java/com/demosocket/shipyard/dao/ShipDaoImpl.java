@@ -1,5 +1,6 @@
 package com.demosocket.shipyard.dao;
 
+import com.demosocket.shipyard.model.AjaxBody;
 import com.demosocket.shipyard.model.Ship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,22 +26,22 @@ public class ShipDaoImpl implements ShipDao {
     }
 
     @Override
-    public List<Ship> findShips(Map<String, String> allParams) {
+    public List<Ship> findShips(AjaxBody body) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Ship> criteriaQuery = criteriaBuilder.createQuery(Ship.class);
         Root<Ship> shipRoot = criteriaQuery.from(Ship.class);
 
 
 //        Cost Predicate
-        Predicate predicateC = criteriaBuilder.between(shipRoot.get("cost"), Integer.valueOf(allParams.get("min")), Integer.valueOf(allParams.get("max")));
+        Predicate predicateC = criteriaBuilder.between(shipRoot.get("cost"), body.getPriceMin(), body.getPriceMax());
 
         Map<String, Boolean> manufacturerMap = new HashMap<>();
-        manufacturerMap.put("%Core Dynamics%", Boolean.valueOf(allParams.get("coreDynamics")));
-        manufacturerMap.put("%Faulcon DeLacy%", Boolean.valueOf(allParams.get("faulconDeLacy")));
-        manufacturerMap.put("%Gutamaya%", Boolean.valueOf(allParams.get("gutamaya")));
-        manufacturerMap.put("%Lakon%", Boolean.valueOf(allParams.get("lakon")));
-        manufacturerMap.put("%Saud Kruger%", Boolean.valueOf(allParams.get("saudKruger")));
-        manufacturerMap.put("%Zorgon Peterson%", Boolean.valueOf(allParams.get("zorgonPeterson")));
+        manufacturerMap.put("%Core Dynamics%", body.getCoreDynamics());
+        manufacturerMap.put("%Faulcon DeLacy%", body.getFaulconDeLacy());
+        manufacturerMap.put("%Gutamaya%", body.getGutamaya());
+        manufacturerMap.put("%Lakon%", body.getLakon());
+        manufacturerMap.put("%Saud Kruger%", body.getSaudKruger());
+        manufacturerMap.put("%Zorgon Peterson%", body.getZorgonPeterson());
 
         List<Predicate> manufacturerPredicates = new ArrayList<>();
         if (manufacturerMap.containsValue(true)) {
@@ -59,9 +60,9 @@ public class ShipDaoImpl implements ShipDao {
         Predicate predicateM = criteriaBuilder.or(manufacturerPredicates.toArray(new Predicate[0]));
 
         Map<String, Boolean> costMap = new HashMap<>();
-        costMap.put("%Large%", Boolean.valueOf(allParams.get("large")));
-        costMap.put("%Medium%", Boolean.valueOf(allParams.get("medium")));
-        costMap.put("%Small%", Boolean.valueOf(allParams.get("small")));
+        costMap.put("%Large%", body.getLarge());
+        costMap.put("%Medium%", body.getMedium());
+        costMap.put("%Small%", body.getSmall());
 
         List<Predicate> sizePredicates = new ArrayList<>();
         if (costMap.containsValue(true)) {

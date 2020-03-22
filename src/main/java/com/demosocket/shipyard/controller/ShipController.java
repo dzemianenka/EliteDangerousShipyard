@@ -1,12 +1,12 @@
 package com.demosocket.shipyard.controller;
 
+import com.demosocket.shipyard.model.AjaxBody;
 import com.demosocket.shipyard.model.Ship;
 import com.demosocket.shipyard.service.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/ships")
@@ -20,10 +20,9 @@ public class ShipController {
     }
 
     @PostMapping("/search")
-    @ResponseBody
-    public List<Ship> findShips(@RequestParam Map<String, String> allParams) {
+    public List<Ship> getSearchAjax(@RequestBody AjaxBody body) {
 
-        return shipService.findShips(allParams);
+        return shipService.findShips(body);
     }
 
 }
