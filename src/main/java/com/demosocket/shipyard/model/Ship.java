@@ -19,12 +19,14 @@ public class Ship {
     @Column(name = "ship_model")
     private String shipModel;
 
-    @Column(name = "manufacturer")
-    private String manufacturer;
-
     @Column(name = "cost")
     private int cost;
 
-    @Column(name = "size")
-    private String size;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturer manufacturer;
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "size_id")
+    private Size size;
 }

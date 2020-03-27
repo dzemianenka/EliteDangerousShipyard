@@ -1,15 +1,11 @@
 package com.demosocket.shipyard.dao;
 
-import com.demosocket.shipyard.model.AjaxBody;
-import com.demosocket.shipyard.model.Ship;
+import com.demosocket.shipyard.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,49 +27,52 @@ public class ShipDaoImpl implements ShipDao {
         CriteriaQuery<Ship> criteriaQuery = criteriaBuilder.createQuery(Ship.class);
         Root<Ship> shipRoot = criteriaQuery.from(Ship.class);
 
+        shipRoot.fetch(Ship_.manufacturer, JoinType.LEFT);
+        shipRoot.fetch(Ship_.size, JoinType.LEFT);
+        criteriaQuery.select(shipRoot).distinct(true);
 
 //        Cost Predicate
-        Predicate predicateC = criteriaBuilder.between(shipRoot.get("cost"), body.getPriceMin(), body.getPriceMax());
+        Predicate predicateC = criteriaBuilder.between(shipRoot.get(Ship_.cost), body.getPriceMin(), body.getPriceMax());
 
-        Map<String, Boolean> manufacturerMap = new HashMap<>();
-        manufacturerMap.put("%Core Dynamics%", body.getCoreDynamics());
-        manufacturerMap.put("%Faulcon DeLacy%", body.getFaulconDeLacy());
-        manufacturerMap.put("%Gutamaya%", body.getGutamaya());
-        manufacturerMap.put("%Lakon%", body.getLakon());
-        manufacturerMap.put("%Saud Kruger%", body.getSaudKruger());
-        manufacturerMap.put("%Zorgon Peterson%", body.getZorgonPeterson());
+        Map<Integer, Boolean> manufacturerMap = new HashMap<>();
+        manufacturerMap.put(1, body.getCoreDynamics());
+        manufacturerMap.put(2, body.getFaulconDeLacy());
+        manufacturerMap.put(3, body.getGutamaya());
+        manufacturerMap.put(4, body.getLakon());
+        manufacturerMap.put(5, body.getSaudKruger());
+        manufacturerMap.put(6, body.getZorgonPeterson());
 
         List<Predicate> manufacturerPredicates = new ArrayList<>();
         if (manufacturerMap.containsValue(true)) {
-            for (Map.Entry<String, Boolean> entry : manufacturerMap.entrySet()) {
+            for (Map.Entry<Integer, Boolean> entry : manufacturerMap.entrySet()) {
                 if (entry.getValue()) {
-                    manufacturerPredicates.add(criteriaBuilder.like(shipRoot.get("manufacturer"), entry.getKey()));
+                    manufacturerPredicates.add(criteriaBuilder.equal(shipRoot.get(Ship_.manufacturer), entry.getKey()));
                 }
             }
         } else {
-            for (Map.Entry<String, Boolean> entry : manufacturerMap.entrySet()) {
-                manufacturerPredicates.add(criteriaBuilder.like(shipRoot.get("manufacturer"), entry.getKey()));
+            for (Map.Entry<Integer, Boolean> entry : manufacturerMap.entrySet()) {
+                manufacturerPredicates.add(criteriaBuilder.equal(shipRoot.get(Ship_.manufacturer), entry.getKey()));
             }
         }
 
 //        Manufacturer Predicate
         Predicate predicateM = criteriaBuilder.or(manufacturerPredicates.toArray(new Predicate[0]));
 
-        Map<String, Boolean> costMap = new HashMap<>();
-        costMap.put("%Large%", body.getLarge());
-        costMap.put("%Medium%", body.getMedium());
-        costMap.put("%Small%", body.getSmall());
+        Map<Integer, Boolean> costMap = new HashMap<>();
+        costMap.put(1, body.getLarge());
+        costMap.put(2, body.getMedium());
+        costMap.put(3, body.getSmall());
 
         List<Predicate> sizePredicates = new ArrayList<>();
         if (costMap.containsValue(true)) {
-            for (Map.Entry<String, Boolean> entry : costMap.entrySet()) {
+            for (Map.Entry<Integer, Boolean> entry : costMap.entrySet()) {
                 if (entry.getValue()) {
-                    sizePredicates.add(criteriaBuilder.like(shipRoot.get("size"), entry.getKey()));
+                    sizePredicates.add(criteriaBuilder.equal(shipRoot.get(Ship_.size), entry.getKey()));
                 }
             }
         } else {
-            for (Map.Entry<String, Boolean> entry : costMap.entrySet()) {
-                sizePredicates.add(criteriaBuilder.like(shipRoot.get("size"), entry.getKey()));
+            for (Map.Entry<Integer, Boolean> entry : costMap.entrySet()) {
+                sizePredicates.add(criteriaBuilder.equal(shipRoot.get(Ship_.size), entry.getKey()));
             }
         }
 
@@ -82,6 +81,9 @@ public class ShipDaoImpl implements ShipDao {
 
 //        Result Predicate
         Predicate resultPredicate = criteriaBuilder.and(predicateC, predicateM, predicateS);
+
+//        order by
+        criteriaQuery.orderBy(criteriaBuilder.asc(shipRoot.get(Ship_.shipModel)));
 
         criteriaQuery.select(shipRoot).where(resultPredicate);
 

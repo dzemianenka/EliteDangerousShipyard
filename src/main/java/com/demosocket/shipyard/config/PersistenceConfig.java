@@ -69,6 +69,7 @@ public class PersistenceConfig {
                 environment.getRequiredProperty("spring.jpa.properties.hibernate.dialect"));
         properties.put("spring.jpa.show-sql",
                 environment.getRequiredProperty("spring.jpa.show-sql"));
+//        properties.put("javax.persistence.cache.storeMode", CacheStoreMode.BYPASS);
 
         return properties;
     }

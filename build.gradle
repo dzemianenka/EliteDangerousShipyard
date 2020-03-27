@@ -29,6 +29,7 @@ dependencies {
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
+//    annotationProcessor 'org.hibernate:hibernate-jpamodelgen:5.4.12.Final'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
