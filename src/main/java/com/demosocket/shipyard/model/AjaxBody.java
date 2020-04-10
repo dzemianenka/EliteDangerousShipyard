@@ -44,5 +44,4 @@ public class AjaxBody{
 
     @NotNull
     private Boolean small;
-
 }

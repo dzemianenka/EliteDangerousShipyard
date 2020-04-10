@@ -1,7 +1,7 @@
 # Elite Dangerous Shipyard
 
-Elite Dangerous web app contains ships and search filter. 
-Database queries are executed **without** a full page reload with javascript.
+Single page application contains ships and search filter. 
+Database queries are executed **without** a full page reload with JavaScript.
 ***
 The project is built on Spring, Hibernate, JavaScript and template engine Thymeleaf.
 
