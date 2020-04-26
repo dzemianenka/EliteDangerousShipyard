@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Getter
 @Setter
@@ -17,7 +16,6 @@ public class Manufacturer {
     @Column(name = "manufacturer_id")
     private int manufacturer_id;
 
-//    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
     @Column(name = "manufacturer")
     private String manufacturer;
 }

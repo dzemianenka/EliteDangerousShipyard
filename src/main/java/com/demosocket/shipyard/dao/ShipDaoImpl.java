@@ -14,7 +14,7 @@ import java.util.Map;
 @Repository
 public class ShipDaoImpl implements ShipDao {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public ShipDaoImpl(EntityManager entityManager) {

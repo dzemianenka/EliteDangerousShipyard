@@ -18,7 +18,7 @@ import java.util.Properties;
 @PropertySource("classpath:application.properties")
 public class PersistenceConfig {
 
-    private Environment environment;
+    private final Environment environment;
 
     @Autowired
     public PersistenceConfig(Environment environment) {

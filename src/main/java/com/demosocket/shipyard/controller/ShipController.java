@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/ships")
 public class ShipController {
 
-    private ShipService shipService;
+    private final ShipService shipService;
 
     @Autowired
     public ShipController(ShipService shipService) {

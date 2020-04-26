@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ShipServiceImpl implements ShipService {
 
-    private ShipDao shipDao;
+    private final ShipDao shipDao;
 
     @Autowired
     public ShipServiceImpl(ShipDao shipDao) {
