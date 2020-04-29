@@ -1,21 +1,15 @@
 package com.demosocket.shipyard.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
-import javax.persistence.*;
+@AllArgsConstructor
+public enum Size {
 
-@Entity
-@Getter
-@Setter
-@Table(name = "size")
-public class Size {
+    LARGE("Large"),
+    MEDIUM("Medium"),
+    SMALL("Small");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "size_id")
-    private int size_id;
-
-    @Column(name = "size")
-    private String size;
+    @Getter
+    private final String title;
 }

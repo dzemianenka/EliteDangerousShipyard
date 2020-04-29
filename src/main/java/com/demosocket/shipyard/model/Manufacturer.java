@@ -1,21 +1,18 @@
 package com.demosocket.shipyard.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
-import javax.persistence.*;
+@AllArgsConstructor
+public enum Manufacturer {
 
-@Getter
-@Setter
-@Entity
-@Table(name = "manufacturer")
-public class Manufacturer {
+    CORE_DYNAMICS("Core Dynamics"),
+    FAULCON_DELACY("Faulcon DeLacy"),
+    GUTAMAYA("Gutamaya"),
+    LAKON("Lakon"),
+    SAUD_KRUGER("Saud Kruger"),
+    ZORGON_PETERSON("Zorgon Peterson");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "manufacturer_id")
-    private int manufacturer_id;
-
-    @Column(name = "manufacturer")
-    private String manufacturer;
+    @Getter
+    private final String title;
 }

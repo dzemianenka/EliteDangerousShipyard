@@ -23,9 +23,9 @@ async function checkIt() {
             let resultDiv = '<div>';
             data.forEach(ship => resultDiv += '<div class="ship-div">' +
                 '<p> Model: ' + ship["shipModel"] + '</p>' +
-                '<p> Manufacturer: ' + ship.manufacturer["manufacturer"] + '</p>' +
+                '<p> Manufacturer: ' + ship["manufacturer"] + '</p>' +
                 '<p> Cost: ' + ship["cost"] + ' cr</p>' +
-                '<p> Landing Pad: ' + ship.size["size"] + '</p>' +
+                '<p> Landing Pad: ' + ship["size"] + '</p>' +
                 '</div>');
             resultDiv += '</div>';
             document.getElementById("placeholder").innerHTML = resultDiv;

@@ -12,36 +12,36 @@ public class AjaxBody{
 
     @NotNull
     @Min(value = 0, message = "priceMin should not be less than 0")
-    private Integer priceMin;
+    private final Integer priceMin;
 
     @NotNull
     @Min(value = 31000, message = "priceMax should not be less than 31000")
-    private Integer priceMax;
+    private final Integer priceMax;
 
     @NotNull
-    private Boolean coreDynamics;
+    private final Boolean coreDynamics;
 
     @NotNull
-    private Boolean faulconDeLacy;
+    private final Boolean faulconDeLacy;
 
     @NotNull
-    private Boolean gutamaya;
+    private final Boolean gutamaya;
 
     @NotNull
-    private Boolean lakon;
+    private final Boolean lakon;
 
     @NotNull
-    private Boolean saudKruger;
+    private final Boolean saudKruger;
 
     @NotNull
-    private Boolean zorgonPeterson;
+    private final Boolean zorgonPeterson;
 
     @NotNull
-    private Boolean large;
+    private final Boolean large;
 
     @NotNull
-    private Boolean medium;
+    private final Boolean medium;
 
     @NotNull
-    private Boolean small;
+    private final Boolean small;
 }

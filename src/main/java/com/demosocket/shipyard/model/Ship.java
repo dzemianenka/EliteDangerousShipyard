@@ -22,11 +22,11 @@ public class Ship {
     @Column(name = "cost")
     private int cost;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "manufacturer_id")
+    @Column(name = "manufacturer")
+    @Enumerated(value = EnumType.STRING)
     private Manufacturer manufacturer;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "size_id")
+    @Column(name = "size")
+    @Enumerated(value = EnumType.STRING)
     private Size size;
 }
